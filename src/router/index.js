@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Deathratepage from '../views/Deathratepage.vue'
+import Deathratepage from '@/views/Deathratepage.vue'
 Vue.use(VueRouter)
 
 const routes = [

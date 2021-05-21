@@ -1,5 +1,7 @@
 <template>
-  <div>病死率折线图</div>
+  <div class="death-container">
+      <div class="death-chart">S</div>
+  </div>
 </template>
 
 <script>
