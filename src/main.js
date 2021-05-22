@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import './assets/css/globle.less'
 import axios from 'axios'
 // 请求基准路径的配置（后台接口）
 axios.defaults.baseURL = 'http://127.0.0.1:8888/api'
