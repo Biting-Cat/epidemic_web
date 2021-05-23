@@ -1,34 +1,96 @@
 <template>
   <div class="death-container">
-      <div class="death-chart" ref="Deathrate_ref">S</div>
+    <div class="death-chart" ref="Deathrate_ref"></div>
   </div>
 </template>
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       chartInstance: null
+      // allData: null
     }
   },
   mounted () {
     this.initChart()
-    this.getData()
+    this.updateChart()
+    // this.getData()
   },
   methods: {
-    initChart () {
+    initChart() {
       this.chartInstance = this.$echarts.init(this.$refs.Deathrate_ref)
     },
-    getData () {
-      // 接口地址
-      this.$http.get()
-    },
-    updateChart () {
+    // async getData() {
+    //   // 接口地址,在main.js里面可以调基准地址
+    //   const { data: ret } = await this.$http.get('line')
+    //   console.log(ret)
+    //   this.allData = ret
+    //   this.updateChart()
+    // },
+    updateChart() {
+      const option = {
+        title: {
+          text: '病死率'
+        },
+        tooltip: {
+          trigger: 'axis'
+        },
+        legend: {
+          data: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']
+        },
+        grid: {
+          left: '3%',
+          right: '4%',
+          bottom: '3%',
+          containLabel: true
+        },
+        toolbox: {
+          feature: {
+            saveAsImage: {}
+          }
+        },
+        xAxis: {
+          type: 'category',
+          boundaryGap: false,
+          data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+        },
+        yAxis: {
+          type: 'value'
+        },
+        series: [
+          {
+            name: '邮件营销',
+            type: 'line',
+            data: [120, 132, 101, 134, 90, 230, 210]
+          },
+          {
+            name: '联盟广告',
+            type: 'line',
+            data: [220, 182, 191, 234, 290, 330, 310]
+          },
+          {
+            name: '视频广告',
+            type: 'line',
+            data: [150, 232, 201, 154, 190, 330, 410]
+          },
+          {
+            name: '直接访问',
+            type: 'line',
+            data: [320, 332, 301, 334, 390, 330, 320]
+          },
+          {
+            name: '搜索引擎',
+            type: 'line',
+            data: [820, 932, 901, 934, 1290, 1330, 1320]
+          }
+        ]
+      }
+      this.chartInstance.setOption(option)
     }
   }
 }
 </script>
 
 <style>
-
 </style>
