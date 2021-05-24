@@ -1,24 +1,13 @@
 # epidemic_web
 
-## Project setup
-```
-npm install
-```
+components 文件夹下存放的是图标本体
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+views文件夹下存放的是图标的分视图 
 
-### Compiles and minifies for production
-```
-npm run build
-```
+例如病死率折线图率路径：http://localhost:8999/#/Deathratepage
 
-### Lints and fixes files
-```
-npm run lint
-```
+App.vue 是总视图，正在调试
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+

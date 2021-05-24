@@ -9,28 +9,41 @@ export default {
   data() {
     return {
       chartInstance: null,
-      allData: null
+      allData: null,
+      timevalue: null,
+      timerId: null // 定时器
     }
   },
   // mounted才能获取$ref
   mounted() {
     this.initChart()
     this.getData()
-    window.addEventListener('resize', this.screenAdapter())
+    window.addEventListener('resize', this.screenAdapter)
+  },
+  destroyed() {
+    clearInterval(this.timerId)
   },
   methods: {
     // 创建图表
     initChart() {
       this.chartInstance = this.$echarts.init(this.$refs.Deathrate_ref)
+      this.chartInstance.on('mouseover', () => {
+        clearInterval(this.timerId)
+      })
+      this.chartInstance.on('mouseout', () => {
+        this.startInterval()
+      })
     },
-    async getData() {
-      // 接口地址,在main.js里面可以调基准地址
-      const { data: ret } = await this.$http.get('line')
-      console.log(ret)
-      this.allData = ret
+    getData() {
+    //   // 接口地址,在main.js里面可以调基准地址
+    //   const { data: ret } = await this.$http.get('line')
+    //   console.log(ret)
+    //   this.allData = ret
       this.updateChart()
+      this.startInterval()
     },
     updateChart() {
+      this.timevalue = this.timevalue++
       // option的静态部分
       const initoption = {
         title: {
@@ -56,7 +69,8 @@ export default {
         xAxis: {
           type: 'category',
           boundaryGap: false,
-          data: this.allData.deaths
+          // data: this.allData.deaths
+          data: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']
         },
         yAxis: {
           type: 'value'
@@ -107,12 +121,20 @@ export default {
             }
           },
           series: {
-            barwidth: titleFontSize
+            linewidth: titleFontSize
           }
         }
       }
       this.chartInstance.setOption(adapteroption)
       this.chartInstance.resize()
+    },
+    startInterval () {
+      if (this.timerId) {
+        clearInterval(this.timerId)
+      }
+      this.timerId = setInterval(() => {
+        this.updateChart()
+      }, 3000)
     }
   }
 }
