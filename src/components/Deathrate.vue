@@ -34,11 +34,11 @@ export default {
         this.startInterval()
       })
     },
-    getData() {
-    //   // 接口地址,在main.js里面可以调基准地址
-    //   const { data: ret } = await this.$http.get('line')
-    //   console.log(ret)
-    //   this.allData = ret
+    async getData() {
+      // 接口地址,在main.js里面可以调基准地址
+      const { data: ret } = await this.$http.get('line')
+      console.log(ret)
+      this.allData = ret
       this.updateChart()
       this.startInterval()
     },
