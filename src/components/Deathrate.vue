@@ -8,28 +8,31 @@
 export default {
   data() {
     return {
-      chartInstance: null
-      // allData: null
+      chartInstance: null,
+      allData: null
     }
   },
-  mounted () {
+  // mounted才能获取$ref
+  mounted() {
     this.initChart()
-    this.updateChart()
-    // this.getData()
+    this.getData()
+    window.addEventListener('resize', this.screenAdapter())
   },
   methods: {
+    // 创建图表
     initChart() {
       this.chartInstance = this.$echarts.init(this.$refs.Deathrate_ref)
     },
-    // async getData() {
-    //   // 接口地址,在main.js里面可以调基准地址
-    //   const { data: ret } = await this.$http.get('line')
-    //   console.log(ret)
-    //   this.allData = ret
-    //   this.updateChart()
-    // },
+    async getData() {
+      // 接口地址,在main.js里面可以调基准地址
+      const { data: ret } = await this.$http.get('line')
+      console.log(ret)
+      this.allData = ret
+      this.updateChart()
+    },
     updateChart() {
-      const option = {
+      // option的静态部分
+      const initoption = {
         title: {
           text: '病死率'
         },
@@ -53,7 +56,7 @@ export default {
         xAxis: {
           type: 'category',
           boundaryGap: false,
-          data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+          data: this.allData.deaths
         },
         yAxis: {
           type: 'value'
@@ -86,7 +89,30 @@ export default {
           }
         ]
       }
-      this.chartInstance.setOption(option)
+      this.chartInstance.setOption(initoption)
+    },
+    screenAdapter() {
+      const titleFontSize = this.$refs.Deathrate_ref.offsetWidth / 100 * 3.6
+      console.log(titleFontSize)
+      const adapteroption = {
+        title: {
+          textstyle: {
+            fontsize: titleFontSize
+          }
+        },
+        tooltip: {
+          axisPointer: {
+            lineStyle: {
+              width: titleFontSize
+            }
+          },
+          series: {
+            barwidth: titleFontSize
+          }
+        }
+      }
+      this.chartInstance.setOption(adapteroption)
+      this.chartInstance.resize()
     }
   }
 }
