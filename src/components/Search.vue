@@ -145,14 +145,16 @@ export default {
 <style>
 .searchinput {
   width: 100%;
-
-  }
-  el-input el-select{
-    height: 10%;
+margin-top: .0125rem;
   }
   .search-chart{
     height: 90%;
     width: 100%;
+    border: 0;
     overflow: hidden;
+  }
+ .input-with-select .el-input__inner{
+    height: .630rem;
+    background-color: whitesmoke;
   }
 </style>

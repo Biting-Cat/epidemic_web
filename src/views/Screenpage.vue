@@ -24,8 +24,8 @@
         <div class="no">
           <div class="no-hd">
             <ul>
-              <li>{{death}}</li>
-              <li>{{cease}}</li>
+              <li>{{ death }}</li>
+              <li>{{ cease }}</li>
             </ul>
           </div>
           <div class="no-bd">
@@ -41,13 +41,14 @@
       </div>
       <!-- 右侧 -->
       <div class="column">
-        <div class="panel bar2">
-          <div class="chart">
-          </div>
-          <div class="panel-footer"></div>
-        </div>
-        <div class="panel2 line2">
-          <div class="chart"></div>
+        <div class="panel3">
+          <el-table :data="tableData" style="width: 100%">
+            <el-table-column prop="date" label="日期" width="180">
+            </el-table-column>
+            <el-table-column prop="name" label="姓名" width="180">
+            </el-table-column>
+            <el-table-column prop="address" label="地址"> </el-table-column>
+          </el-table>
         </div>
       </div>
     </section>
@@ -63,11 +64,33 @@ export default {
     deathrate: Deathrate,
     search: Search
   },
-  data () {
+  data() {
     return {
       allData: null,
       death: 12323,
-      cease: 12323
+      cease: 12323,
+      tableData: [
+        {
+          date: '2016-05-02',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        },
+        {
+          date: '2016-05-04',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1517 弄'
+        },
+        {
+          date: '2016-05-01',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1519 弄'
+        },
+        {
+          date: '2016-05-03',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1516 弄'
+        }
+      ]
     }
   },
   mounted() {
@@ -112,7 +135,7 @@ header {
 }
 header h1 {
   font-size: 0.7rem;
-  color: #5F8FC9;
+  color: #5f8fc9;
   line-height: 1rem;
   text-align: center;
 }
@@ -145,14 +168,21 @@ header h1 {
   position: relative;
   height: 8rem;
   padding: 0 0.1875rem 0.5rem;
-  margin-bottom: .1875rem;
-  background:  whitesmoke;
+  margin-bottom: 0.1875rem;
+  background: whitesmoke;
+}
+.mainbox .panel3 {
+  position: relative;
+  height: 11.875rem;
+  padding: 0 0.1875rem 0.5rem;
+  margin-bottom: 0.25rem;
+  background: whitesmoke;
 }
 .mainbox .panel2 .chart {
   height: 5rem;
 }
-.no{
-  padding-top: .125rem;
+.no {
+  padding-top: 0.125rem;
   background: whitesmoke;
 }
 .no .no-hd {
@@ -174,7 +204,7 @@ header h1 {
 .no .no-bd ul {
   display: flex;
   background: whitesmoke;
-  margin: .125rem;
+  margin: 0.125rem;
 }
 .no .no-bd ul li {
   flex: 1;
@@ -183,7 +213,7 @@ header h1 {
   font-size: 0.3rem;
   height: 0.5rem;
   line-height: 0.5rem;
-  padding-top: 0.100rem;
+  padding-top: 0.1rem;
 }
 .map {
   height: 9.76rem;
@@ -197,6 +227,9 @@ header h1 {
   left: 0;
   width: 100%;
   height: 10.125rem;
+}
+.panel3 .el-table {
+  background: whitesmoke;
 }
 /* 约束屏幕尺寸 */
 @media screen and (max-width: 1024px) {
