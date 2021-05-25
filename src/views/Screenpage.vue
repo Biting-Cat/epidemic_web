@@ -24,8 +24,8 @@
         <div class="no">
           <div class="no-hd">
             <ul>
-              <li>123456</li>
-              <li>99896</li>
+              <li>{{death}}</li>
+              <li>{{cease}}</li>
             </ul>
           </div>
           <div class="no-bd">
@@ -43,7 +43,6 @@
       <div class="column">
         <div class="panel bar2">
           <div class="chart">
->>>>>>> search
           </div>
           <div class="panel-footer"></div>
         </div>
@@ -64,13 +63,20 @@ export default {
     deathrate: Deathrate,
     search: Search
   },
+  data () {
+    return {
+      allData: null,
+      death: 12323,
+      cease: 12323
+    }
+  },
   mounted() {
     // window.addEventListener('resize', this.screenAdapter)
   },
   methods: {
     getData() {
       // 接口地址,在main.js里面可以调基准地址
-      // const { data: ret } = await this.$http.get('line')
+      // const { data: ret } = await this.$http.get('total ')
       // console.log(ret)
       // this.allData = ret
     }
