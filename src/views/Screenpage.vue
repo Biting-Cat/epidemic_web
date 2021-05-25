@@ -1,0 +1,205 @@
+<template>
+  <div class="screen-container">
+    <!-- 头部 -->
+    <header>
+      <h1>美国疫情信息查询及趋势预测</h1>
+    </header>
+    <!-- 页面主体盒子 -->
+    <section class="mainbox">
+      <!-- 左侧 -->
+      <div class="column">
+        <div class="panel bar">
+          <h2>美国死亡最高州排名</h2>
+          <div class="chart"></div>
+        </div>
+        <div class="panel line">
+          <h2>美国死亡最高区排名</h2>
+          <div class="chart"></div>
+        </div>
+        <div class="panel pie">
+          <h2>美国新增感染/死亡趋势图</h2>
+          <div class="chart"></div>
+        </div>
+      </div>
+      <!-- 中间 -->
+      <div class="column">
+        <div class="no">
+          <div class="no-hd">
+            <ul>
+              <li>123456</li>
+              <li>99896</li>
+            </ul>
+          </div>
+          <div class="no-bd">
+            <ul>
+              <li>美国累计感染人数</li>
+              <li>美国累计死亡人数</li>
+            </ul>
+          </div>
+        </div>
+        <div class="map">
+          <div id="map" class="chart"></div>
+        </div>
+      </div>
+      <!-- 右侧 -->
+      <div class="column">
+        <div class="panel bar2">
+          <h2>搜索框</h2>
+          <div class="chart">
+            <div class="search">
+              <input type="text/" />
+              <buttom>搜索</buttom>
+            </div>
+          </div>
+          <div class="panel-footer"></div>
+        </div>
+        <div class="panel2 line2">
+          <h2>美国各州</h2>
+          <div class="chart"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+</template>
+
+<script>
+import '../../public/static/lib/flexible.js'
+export default {}
+</script>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.screen-container {
+  line-height: 1.15;
+  min-width: 1024px;
+  max-width: 1920px;
+}
+li {
+  list-style: none;
+}
+header {
+  height: 1.25rem;
+  background-color: rgba(216, 240, 250, 0.9);
+  background-size: 100% 100%;
+  position: relative;
+}
+header h1 {
+  font-size: 0.7rem;
+  color: #5F8FC9;
+  line-height: 1rem;
+  text-align: center;
+}
+.mainbox {
+  display: flex;
+  min-width: 1024px;
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 0.125rem;
+  padding-bottom: 0;
+}
+.mainbox .column {
+  flex: 3;
+}
+.mainbox .column:nth-child(2) {
+  flex: 5;
+  margin: 0 0.125rem 0.1875rem;
+}
+.mainbox .panel {
+  position: relative;
+  height: 3.875rem;
+  padding: 0 0.1875rem 0.5rem;
+  border: 1px solid rgba(25, 186, 139, 0.17);
+  margin-bottom: 0.1875rem;
+  background: rgba(216, 240, 250, 0.7);
+}
+.mainbox .panel h2 {
+  height: 0.6rem;
+  color: #000;
+  line-height: 0.6rem;
+  text-align: center;
+  font-size: 0.25rem;
+  font-weight: normal;
+}
+.mainbox .panel .chart {
+  height: 3rem;
+}
+.mainbox .panel .search {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.mainbox .panel2 {
+  position: relative;
+  height: 8rem;
+  padding: 0 0.1875rem 0.5rem;
+  border: 1px solid rgba(25, 186, 139, 0.17);
+  margin-bottom: 0.1875rem;
+  background:  rgba(216, 240, 250, 0.7);
+}
+.no .no-hd {
+  position: relative;
+  border: 1px solid #d8f0fa;
+}
+
+.no .no-hd ul {
+  display: flex;
+}
+.no .no-hd ul li {
+  flex: 1px;
+  height: 1rem;
+  font-size: 0.875rem;
+  color: #f86551;
+  text-align: center;
+  font-family: electronicFont;
+  position: relative;
+}
+.no .no-hd ul li:nth-child(1)::after {
+  content: "";
+  position: absolute;
+  top: 25%;
+  right: 0;
+  height: 50%;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.2);
+}
+.no .no-bd ul {
+  display: flex;
+}
+.no .no-bd ul li {
+  flex: 1;
+  text-align: center;
+  color: #000000;
+  font-size: 0.225rem;
+  height: 0.5rem;
+  line-height: 0.5rem;
+  padding-top: 0.125rem;
+}
+.map {
+  height: 10.125rem;
+  position: relative;
+  overflow: hidden;
+}
+.map .chart {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10.125rem;
+}
+/* 约束屏幕尺寸 */
+@media screen and (max-width: 1024px) {
+  html {
+    font-size: 42px !important;
+  }
+}
+@media screen and (min-width: 1920px) {
+  html {
+    font-size: 80px !important;
+  }
+}
+</style>
