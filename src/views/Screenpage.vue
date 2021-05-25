@@ -9,16 +9,14 @@
       <!-- 左侧 -->
       <div class="column">
         <div class="panel bar">
-          <h2>美国死亡最高州排名</h2>
-          <div class="chart"></div>
+          <div class="chart">
+            <deathrate></deathrate>
+          </div>
         </div>
-        <div class="panel line">
-          <h2>美国死亡最高区排名</h2>
-          <div class="chart"></div>
-        </div>
-        <div class="panel pie">
-          <h2>美国新增感染/死亡趋势图</h2>
-          <div class="chart"></div>
+        <div class="panel2">
+          <div class="chart">
+            <search></search>
+          </div>
         </div>
       </div>
       <!-- 中间 -->
@@ -44,17 +42,12 @@
       <!-- 右侧 -->
       <div class="column">
         <div class="panel bar2">
-          <h2>搜索框</h2>
           <div class="chart">
-            <div class="search">
-              <input type="text/" />
-              <buttom>搜索</buttom>
-            </div>
+>>>>>>> search
           </div>
           <div class="panel-footer"></div>
         </div>
         <div class="panel2 line2">
-          <h2>美国各州</h2>
           <div class="chart"></div>
         </div>
       </div>
@@ -64,26 +57,50 @@
 
 <script>
 import '../../public/static/lib/flexible.js'
-export default {}
+import Deathrate from '../components/Deathrate'
+import Search from '../components/Search'
+export default {
+  components: {
+    deathrate: Deathrate,
+    search: Search
+  },
+  mounted() {
+    // window.addEventListener('resize', this.screenAdapter)
+  },
+  methods: {
+    getData() {
+      // 接口地址,在main.js里面可以调基准地址
+      // const { data: ret } = await this.$http.get('line')
+      // console.log(ret)
+      // this.allData = ret
+    }
+  }
+}
 </script>
 
 <style>
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 .screen-container {
+  margin: 0;
   line-height: 1.15;
   min-width: 1024px;
   max-width: 1920px;
+}
+header h1 {
+  font-size: 0.475rem;
+  color: #fff;
+  line-height: 1rem;
+  text-align: center;
+  margin: 0;
 }
 li {
   list-style: none;
 }
 header {
   height: 1.25rem;
-  background-color: rgba(216, 240, 250, 0.9);
+  background-color: whitesmoke;
   background-size: 100% 100%;
   position: relative;
 }
@@ -112,38 +129,28 @@ header h1 {
   position: relative;
   height: 3.875rem;
   padding: 0 0.1875rem 0.5rem;
-  border: 1px solid rgba(25, 186, 139, 0.17);
   margin-bottom: 0.1875rem;
-  background: rgba(216, 240, 250, 0.7);
-}
-.mainbox .panel h2 {
-  height: 0.6rem;
-  color: #000;
-  line-height: 0.6rem;
-  text-align: center;
-  font-size: 0.25rem;
-  font-weight: normal;
+  background: whitesmoke;
 }
 .mainbox .panel .chart {
   height: 3rem;
-}
-.mainbox .panel .search {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
 }
 .mainbox .panel2 {
   position: relative;
   height: 8rem;
   padding: 0 0.1875rem 0.5rem;
-  border: 1px solid rgba(25, 186, 139, 0.17);
-  margin-bottom: 0.1875rem;
-  background:  rgba(216, 240, 250, 0.7);
+  margin-bottom: .1875rem;
+  background:  whitesmoke;
+}
+.mainbox .panel2 .chart {
+  height: 5rem;
+}
+.no{
+  padding-top: .125rem;
+  background: whitesmoke;
 }
 .no .no-hd {
   position: relative;
-  border: 1px solid #d8f0fa;
 }
 
 .no .no-hd ul {
@@ -155,34 +162,28 @@ header h1 {
   font-size: 0.875rem;
   color: #f86551;
   text-align: center;
-  font-family: electronicFont;
+  /* font-family: electronicFont;计数器字体，需要引入 */
   position: relative;
-}
-.no .no-hd ul li:nth-child(1)::after {
-  content: "";
-  position: absolute;
-  top: 25%;
-  right: 0;
-  height: 50%;
-  width: 1px;
-  background: rgba(255, 255, 255, 0.2);
 }
 .no .no-bd ul {
   display: flex;
+  background: whitesmoke;
+  margin: .125rem;
 }
 .no .no-bd ul li {
   flex: 1;
   text-align: center;
   color: #000000;
-  font-size: 0.225rem;
+  font-size: 0.3rem;
   height: 0.5rem;
   line-height: 0.5rem;
-  padding-top: 0.125rem;
+  padding-top: 0.100rem;
 }
 .map {
-  height: 10.125rem;
+  height: 9.76rem;
   position: relative;
   overflow: hidden;
+  background: whitesmoke;
 }
 .map .chart {
   position: absolute;

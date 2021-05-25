@@ -3,6 +3,8 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import './assets/css/globle.less'
+import 'element-ui/lib/theme-chalk/index.css'
+import { Input, Select, Button, Option } from 'element-ui'
 import axios from 'axios'
 // 请求基准路径的配置（后台接口）
 axios.defaults.baseURL = 'http://127.0.0.1:8080//local/'
@@ -13,7 +15,10 @@ Vue.prototype.$http = axios
 Vue.prototype.$echarts = window.echarts
 
 Vue.config.productionTip = false
-
+Vue.use(Input)
+Vue.use(Select)
+Vue.use(Button)
+Vue.use(Option)
 new Vue({
   router,
   store,

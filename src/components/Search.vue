@@ -1,6 +1,18 @@
 <template>
   <div class="death-container">
-    <div class="death-chart" ref="Deathrate_ref"></div>
+    <div class=searchinput>
+      <el-input
+        placeholder="请输入内容"
+        v-model="input3"
+        class="input-with-select">
+        <el-select v-model="select" slot="append" placeholder="请选择">
+          <el-option label="餐厅名" value="1"></el-option>
+          <el-option label="订单号" value="2"></el-option>
+          <el-option label="用户电话" value="3"></el-option>
+        </el-select>
+      </el-input>
+    </div>
+    <div class="search-chart" ref="search_ref"></div>
   </div>
 </template>
 
@@ -9,11 +21,14 @@ export default {
   data() {
     return {
       chartInstance: null,
-      allData: null,
-      timerId: null // 定时器
+      // allData: null,
+      timevalue: null,
+      timerId: null, // 定时器
+
+      input3: '',
+      select: ''
     }
   },
-  // mounted才能获取$ref
   mounted() {
     this.initChart()
     this.getData()
@@ -25,7 +40,7 @@ export default {
   methods: {
     // 创建图表
     initChart() {
-      this.chartInstance = this.$echarts.init(this.$refs.Deathrate_ref)
+      this.chartInstance = this.$echarts.init(this.$refs.search_ref)
       this.chartInstance.on('mouseover', () => {
         clearInterval(this.timerId)
       })
@@ -35,7 +50,7 @@ export default {
     },
     getData() {
       // 接口地址,在main.js里面可以调基准地址
-      // const { data: ret } = await this.$http.get('line')
+      // const { data: ret } = await this.$http.get('/search')
       // console.log(ret)
       // this.allData = ret
       this.updateChart()
@@ -93,7 +108,7 @@ export default {
       this.chartInstance.setOption(initoption)
     },
     screenAdapter() {
-      const titleFontSize = this.$refs.Deathrate_ref.offsetWidth / 100 * 3.6
+      const titleFontSize = this.$refs.search_ref.offsetWidth / 100 * 3.6
       console.log(titleFontSize)
       const adapteroption = {
         title: {
@@ -128,4 +143,16 @@ export default {
 </script>
 
 <style>
+.searchinput {
+  width: 100%;
+
+  }
+  el-input el-select{
+    height: 10%;
+  }
+  .search-chart{
+    height: 90%;
+    width: 100%;
+    overflow: hidden;
+  }
 </style>
