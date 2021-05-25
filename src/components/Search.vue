@@ -12,7 +12,7 @@
         </el-select>
       </el-input>
     </div>
-    <div class="death-chart" ref="Deathrate_ref"></div>
+    <div class="search-chart" ref="search_ref"></div>
   </div>
 </template>
 
@@ -40,7 +40,7 @@ export default {
   methods: {
     // 创建图表
     initChart() {
-      this.chartInstance = this.$echarts.init(this.$refs.Deathrate_ref)
+      this.chartInstance = this.$echarts.init(this.$refs.search_ref)
       this.chartInstance.on('mouseover', () => {
         clearInterval(this.timerId)
       })
@@ -108,7 +108,7 @@ export default {
       this.chartInstance.setOption(initoption)
     },
     screenAdapter() {
-      const titleFontSize = this.$refs.Deathrate_ref.offsetWidth / 100 * 3.6
+      const titleFontSize = this.$refs.search_ref.offsetWidth / 100 * 3.6
       console.log(titleFontSize)
       const adapteroption = {
         title: {
@@ -143,5 +143,16 @@ export default {
 </script>
 
 <style>
-.searchinput {margin-top: .1875rem}
+.searchinput {
+  width: 100%;
+
+  }
+  el-input el-select{
+    height: 10%;
+  }
+  .search-chart{
+    height: 90%;
+    width: 100%;
+    overflow: hidden;
+  }
 </style>

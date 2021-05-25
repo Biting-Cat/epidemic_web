@@ -82,9 +82,17 @@ export default {
   box-sizing: border-box;
 }
 .screen-container {
+  margin: 0;
   line-height: 1.15;
   min-width: 1024px;
   max-width: 1920px;
+}
+header h1 {
+  font-size: 0.475rem;
+  color: #fff;
+  line-height: 1rem;
+  text-align: center;
+  margin: 0;
 }
 li {
   list-style: none;
@@ -126,12 +134,6 @@ header h1 {
 .mainbox .panel .chart {
   height: 3rem;
 }
-.mainbox .panel .search {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
 .mainbox .panel2 {
   position: relative;
   height: 8rem;
@@ -140,7 +142,7 @@ header h1 {
   background:  whitesmoke;
 }
 .mainbox .panel2 .chart {
-  height: 8rem;
+  height: 5rem;
 }
 .no{
   padding-top: .125rem;
@@ -177,7 +179,7 @@ header h1 {
   padding-top: 0.100rem;
 }
 .map {
-  height: 10.58rem;
+  height: 9.76rem;
   position: relative;
   overflow: hidden;
   background: whitesmoke;
