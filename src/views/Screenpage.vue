@@ -42,17 +42,11 @@
       <!-- 右侧 -->
       <div class="column">
         <div class="panel bar2">
-          <h2>搜索框</h2>
           <div class="chart">
-            <div class="search">
-              <input type="text/" />
-              <buttom>搜索</buttom>
-            </div>
           </div>
           <div class="panel-footer"></div>
         </div>
         <div class="panel2 line2">
-          <h2>美国各州</h2>
           <div class="chart"></div>
         </div>
       </div>
@@ -68,14 +62,23 @@ export default {
   components: {
     deathrate: Deathrate,
     search: Search
+  },
+  mounted() {
+    // window.addEventListener('resize', this.screenAdapter)
+  },
+  methods: {
+    getData() {
+      // 接口地址,在main.js里面可以调基准地址
+      // const { data: ret } = await this.$http.get('line')
+      // console.log(ret)
+      // this.allData = ret
+    }
   }
 }
 </script>
 
 <style>
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 .screen-container {
@@ -88,7 +91,7 @@ li {
 }
 header {
   height: 1.25rem;
-  background-color: rgba(216, 240, 250, 0.9);
+  background-color: whitesmoke;
   background-size: 100% 100%;
   position: relative;
 }
@@ -108,7 +111,6 @@ header h1 {
 }
 .mainbox .column {
   flex: 3;
-  padding-bottom: 10px;
 }
 .mainbox .column:nth-child(2) {
   flex: 5;
@@ -118,9 +120,8 @@ header h1 {
   position: relative;
   height: 3.875rem;
   padding: 0 0.1875rem 0.5rem;
-  border: 1px solid rgba(25, 186, 139, 0.17);
   margin-bottom: 0.1875rem;
-  background: rgba(216, 240, 250, 0.7);
+  background: whitesmoke;
 }
 .mainbox .panel .chart {
   height: 3rem;
@@ -135,17 +136,18 @@ header h1 {
   position: relative;
   height: 8rem;
   padding: 0 0.1875rem 0.5rem;
-  border: 1px solid rgba(25, 186, 139, 0.17);
-  margin-bottom: 0.1875rem;
-  background:  rgba(216, 240, 250, 0.7);
+  margin-bottom: .1875rem;
+  background:  whitesmoke;
 }
 .mainbox .panel2 .chart {
-  height: 6rem;
+  height: 8rem;
+}
+.no{
+  padding-top: .125rem;
+  background: whitesmoke;
 }
 .no .no-hd {
   position: relative;
-  border: 1px solid #d8f0fa;
-  background: #d8f0fa;
 }
 
 .no .no-hd ul {
@@ -157,27 +159,28 @@ header h1 {
   font-size: 0.875rem;
   color: #f86551;
   text-align: center;
-  font-family: electronicFont;
+  /* font-family: electronicFont;计数器字体，需要引入 */
   position: relative;
 }
 .no .no-bd ul {
   display: flex;
-  background: #d8f0fa;
+  background: whitesmoke;
+  margin: .125rem;
 }
 .no .no-bd ul li {
   flex: 1;
   text-align: center;
   color: #000000;
-  font-size: 0.225rem;
+  font-size: 0.3rem;
   height: 0.5rem;
   line-height: 0.5rem;
-  padding-top: 0.125rem;
+  padding-top: 0.100rem;
 }
 .map {
-  height: 10.125rem;
+  height: 10.58rem;
   position: relative;
   overflow: hidden;
-  background: #d8f0fa;
+  background: whitesmoke;
 }
 .map .chart {
   position: absolute;
