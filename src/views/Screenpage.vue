@@ -25,12 +25,14 @@
           <div class="no-hd">
             <ul>
               <li>{{ death }}</li>
+              <ol>|</ol>
               <li>{{ cease }}</li>
             </ul>
           </div>
           <div class="no-bd">
             <ul>
               <li>美国累计感染人数</li>
+              <ol></ol>
               <li>美国累计死亡人数</li>
             </ul>
           </div>
@@ -191,9 +193,18 @@ header h1 {
 
 .no .no-hd ul {
   display: flex;
+  padding: .20rem;
 }
 .no .no-hd ul li {
   flex: 1px;
+  height: 1rem;
+  font-size: 0.875rem;
+  color: #f86551;
+  text-align: center;
+  /* font-family: electronicFont;计数器字体，需要引入 */
+  position: relative;
+}
+.no .no-hd ul ol{
   height: 1rem;
   font-size: 0.875rem;
   color: #f86551;
