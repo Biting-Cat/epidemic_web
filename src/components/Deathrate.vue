@@ -34,11 +34,11 @@ export default {
         this.startInterval()
       })
     },
-    async getData() {
+    getData() {
       // 接口地址,在main.js里面可以调基准地址
-      const { data: ret } = await this.$http.get('line')
-      console.log(ret)
-      this.allData = ret
+      // const { data: ret } = await this.$http.get('line')
+      // console.log(ret)
+      // this.allData = ret
       this.updateChart()
       this.startInterval()
     },
@@ -53,7 +53,7 @@ export default {
           trigger: 'axis'
         },
         legend: {
-          data: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']
+          data: ['邮件营销', '联盟广告']
         },
         grid: {
           left: '3%',
@@ -70,7 +70,7 @@ export default {
           type: 'category',
           boundaryGap: false,
           // data: this.allData.deaths
-          data: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']
+          data: ['邮件营销', '联盟广告', '视频广告']
         },
         yAxis: {
           type: 'value'

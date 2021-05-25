@@ -9,15 +9,14 @@
       <!-- 左侧 -->
       <div class="column">
         <div class="panel bar">
-          <h2>美国死亡最高州排名</h2>
-          <div class="chart"></div>
+          <div class="chart">
+            <deathrate></deathrate>
+          </div>
         </div>
         <div class="panel line">
-          <h2>美国死亡最高区排名</h2>
           <div class="chart"></div>
         </div>
         <div class="panel pie">
-          <h2>美国新增感染/死亡趋势图</h2>
           <div class="chart"></div>
         </div>
       </div>
@@ -64,7 +63,12 @@
 
 <script>
 import '../../public/static/lib/flexible.js'
-export default {}
+import Deathrate from '../components/Deathrate'
+export default {
+  components: {
+    deathrate: Deathrate
+  }
+}
 </script>
 
 <style>
@@ -115,14 +119,6 @@ header h1 {
   border: 1px solid rgba(25, 186, 139, 0.17);
   margin-bottom: 0.1875rem;
   background: rgba(216, 240, 250, 0.7);
-}
-.mainbox .panel h2 {
-  height: 0.6rem;
-  color: #000;
-  line-height: 0.6rem;
-  text-align: center;
-  font-size: 0.25rem;
-  font-weight: normal;
 }
 .mainbox .panel .chart {
   height: 3rem;
