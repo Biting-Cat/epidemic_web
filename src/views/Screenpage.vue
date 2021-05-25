@@ -13,11 +13,10 @@
             <deathrate></deathrate>
           </div>
         </div>
-        <div class="panel line">
-          <div class="chart"></div>
-        </div>
-        <div class="panel pie">
-          <div class="chart"></div>
+        <div class="panel2">
+          <div class="chart">
+            <search></search>
+          </div>
         </div>
       </div>
       <!-- 中间 -->
@@ -64,9 +63,11 @@
 <script>
 import '../../public/static/lib/flexible.js'
 import Deathrate from '../components/Deathrate'
+import Search from '../components/Search'
 export default {
   components: {
-    deathrate: Deathrate
+    deathrate: Deathrate,
+    search: Search
   }
 }
 </script>
@@ -107,6 +108,7 @@ header h1 {
 }
 .mainbox .column {
   flex: 3;
+  padding-bottom: 10px;
 }
 .mainbox .column:nth-child(2) {
   flex: 5;
@@ -137,9 +139,13 @@ header h1 {
   margin-bottom: 0.1875rem;
   background:  rgba(216, 240, 250, 0.7);
 }
+.mainbox .panel2 .chart {
+  height: 6rem;
+}
 .no .no-hd {
   position: relative;
   border: 1px solid #d8f0fa;
+  background: #d8f0fa;
 }
 
 .no .no-hd ul {
@@ -154,17 +160,9 @@ header h1 {
   font-family: electronicFont;
   position: relative;
 }
-.no .no-hd ul li:nth-child(1)::after {
-  content: "";
-  position: absolute;
-  top: 25%;
-  right: 0;
-  height: 50%;
-  width: 1px;
-  background: rgba(255, 255, 255, 0.2);
-}
 .no .no-bd ul {
   display: flex;
+  background: #d8f0fa;
 }
 .no .no-bd ul li {
   flex: 1;
@@ -179,6 +177,7 @@ header h1 {
   height: 10.125rem;
   position: relative;
   overflow: hidden;
+  background: #d8f0fa;
 }
 .map .chart {
   position: absolute;

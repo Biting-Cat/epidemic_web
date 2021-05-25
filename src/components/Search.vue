@@ -1,5 +1,17 @@
 <template>
   <div class="death-container">
+    <div class=searchinput>
+      <el-input
+        placeholder="请输入内容"
+        v-model="input3"
+        class="input-with-select">
+        <el-select v-model="select" slot="append" placeholder="请选择">
+          <el-option label="餐厅名" value="1"></el-option>
+          <el-option label="订单号" value="2"></el-option>
+          <el-option label="用户电话" value="3"></el-option>
+        </el-select>
+      </el-input>
+    </div>
     <div class="death-chart" ref="Deathrate_ref"></div>
   </div>
 </template>
@@ -9,11 +21,14 @@ export default {
   data() {
     return {
       chartInstance: null,
-      allData: null,
-      timerId: null // 定时器
+      // allData: null,
+      timevalue: null,
+      timerId: null, // 定时器
+
+      input3: '',
+      select: ''
     }
   },
-  // mounted才能获取$ref
   mounted() {
     this.initChart()
     this.getData()
@@ -35,7 +50,7 @@ export default {
     },
     getData() {
       // 接口地址,在main.js里面可以调基准地址
-      // const { data: ret } = await this.$http.get('line')
+      // const { data: ret } = await this.$http.get('/search')
       // console.log(ret)
       // this.allData = ret
       this.updateChart()
@@ -139,4 +154,5 @@ export default {
 </script>
 
 <style>
+.searchinput {margin-top: .1875rem}
 </style>
