@@ -45,11 +45,11 @@
       <div class="column">
         <div class="panel3">
           <el-table :data="tableData" style="width: 100%">
-            <el-table-column prop="date" label="日期" width="180">
+            <el-table-column prop="address" label="地区" width="180">
             </el-table-column>
-            <el-table-column prop="name" label="姓名" width="180">
+            <el-table-column prop="cease" label="累计感染" width="180">
             </el-table-column>
-            <el-table-column prop="address" label="地址"> </el-table-column>
+            <el-table-column prop="deaths" label="累计死亡"> </el-table-column>
           </el-table>
         </div>
       </div>
@@ -73,24 +73,24 @@ export default {
       cease: 12323,
       tableData: [
         {
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
+          address: '佛罗里达',
+          cease: '213',
+          deaths: '12'
         },
         {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
+          address: '密歇根',
+          cease: '334',
+          deaths: '21'
         },
         {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
+          address: '纽约',
+          cease: '113',
+          deaths: '8'
         },
         {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
+          address: '华盛顿',
+          cease: '43',
+          deaths: '2'
         }
       ]
     }
@@ -129,6 +129,11 @@ header h1 {
 li {
   list-style: none;
 }
+/* 声明字体*/
+@font-face {
+  font-family: electronicFont;
+  src: url(../../public/static/font/DS-DIGIT.TTF);
+}
 header {
   height: 1.25rem;
   background-color: whitesmoke;
@@ -137,9 +142,10 @@ header {
 }
 header h1 {
   font-size: 0.7rem;
-  color: #5f8fc9;
+  color: #f86551;
   line-height: 1rem;
   text-align: center;
+  padding-right: 1.60rem;
 }
 .mainbox {
   display: flex;
@@ -201,7 +207,7 @@ header h1 {
   font-size: 0.875rem;
   color: #f86551;
   text-align: center;
-  /* font-family: electronicFont;计数器字体，需要引入 */
+  font-family: electronicFont;
   position: relative;
 }
 .no .no-hd ul ol{
