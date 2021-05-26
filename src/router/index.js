@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Deathratepage from '@/views/Deathratepage'
 import Searchpage from '@/views/Searchpage'
 import Screenpage from '@/views/Screenpage'
+import Usamappage from '@/views/Usamappage'
 Vue.use(VueRouter)
 
 const routes = [
@@ -13,6 +14,10 @@ const routes = [
   {
     path: '/Searchpage',
     component: Searchpage
+  },
+  {
+    path: '/Usamappage',
+    component: Usamappage
   },
   {
     path: '/Screenpage',

@@ -38,7 +38,9 @@
           </div>
         </div>
         <div class="map">
-          <div id="map" class="chart"></div>
+          <div id="map" class="chart">
+            <usamap></usamap>
+          </div>
         </div>
       </div>
       <!-- 右侧 -->
@@ -61,10 +63,12 @@
 import '../../public/static/lib/flexible.js'
 import Deathrate from '../components/Deathrate'
 import Search from '../components/Search'
+import Usamap from '../components/Usamap'
 export default {
   components: {
     deathrate: Deathrate,
-    search: Search
+    search: Search,
+    usamap: Usamap
   },
   data() {
     return {
