@@ -8,6 +8,10 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path: '/',
+    redirect: '/Screenpage'
+  },
+  {
     path: '/Deathratepage',
     component: Deathratepage
   },
