@@ -155,6 +155,5 @@ margin-top: .0125rem;
   }
  .input-with-select .el-input__inner{
     height: .630rem;
-    background-color: whitesmoke;
   }
 </style>

@@ -2,7 +2,7 @@
   <div class="screen-container">
     <!-- 头部 -->
     <header>
-      <h1>美国疫情信息查询及趋势预测</h1>
+      <h1 class="h1">美国疫情信息查询及趋势预测</h1>
     </header>
     <!-- 页面主体盒子 -->
     <section class="mainbox">
@@ -47,9 +47,9 @@
       <div class="column">
         <div class="panel3">
           <el-table :data="tableData" style="width: 100%">
-            <el-table-column prop="address" label="地区" width="180">
+            <el-table-column prop="address" label="地区">
             </el-table-column>
-            <el-table-column prop="cease" label="累计感染" width="180">
+            <el-table-column prop="cease" label="累计感染">
             </el-table-column>
             <el-table-column prop="deaths" label="累计死亡"> </el-table-column>
           </el-table>
@@ -123,13 +123,6 @@ export default {
   min-width: 1024px;
   max-width: 1920px;
 }
-header h1 {
-  font-size: 0.475rem;
-  color: #fff;
-  line-height: 1rem;
-  text-align: center;
-  margin: 0;
-}
 li {
   list-style: none;
 }
@@ -139,8 +132,8 @@ li {
   src: url(../../public/static/font/DS-DIGIT.TTF);
 }
 header {
-  height: 1.25rem;
-  background-color: whitesmoke;
+  height: 1rem;
+  background-color: white;
   background-size: 100% 100%;
   position: relative;
 }
@@ -149,7 +142,7 @@ header h1 {
   color: #f86551;
   line-height: 1rem;
   text-align: center;
-  padding-right: 1.60rem;
+  margin: 0px;
 }
 .mainbox {
   display: flex;
@@ -157,7 +150,7 @@ header h1 {
   max-width: 1920px;
   margin: 0 auto;
   padding: 0.125rem;
-  padding-bottom: 0;
+  padding-bottom:.125rem;
 }
 .mainbox .column {
   flex: 3;
@@ -171,7 +164,7 @@ header h1 {
   height: 3.875rem;
   padding: 0 0.1875rem 0.5rem;
   margin-bottom: 0.1875rem;
-  background: whitesmoke;
+  background: white;
 }
 .mainbox .panel .chart {
   height: 3rem;
@@ -181,21 +174,21 @@ header h1 {
   height: 8rem;
   padding: 0 0.1875rem 0.5rem;
   margin-bottom: 0.1875rem;
-  background: whitesmoke;
+  background: white;
 }
 .mainbox .panel3 {
   position: relative;
-  height: 11.875rem;
+  height: 12.1rem;
   padding: 0 0.1875rem 0.5rem;
   margin-bottom: 0.25rem;
-  background: whitesmoke;
+  background: white;
 }
 .mainbox .panel2 .chart {
   height: 5rem;
 }
 .no {
   padding-top: 0.125rem;
-  background: whitesmoke;
+  background: white;
 }
 .no .no-hd {
   position: relative;
@@ -219,12 +212,12 @@ header h1 {
   font-size: 0.875rem;
   color: #f86551;
   text-align: center;
-  /* font-family: electronicFont;计数器字体，需要引入 */
+  font-family: electronicFont;
   position: relative;
 }
 .no .no-bd ul {
   display: flex;
-  background: whitesmoke;
+  background: white;
   margin: 0.125rem;
 }
 .no .no-bd ul li {
@@ -237,19 +230,20 @@ header h1 {
   padding-top: 0.1rem;
 }
 .map {
-  height: 9.76rem;
   position: relative;
+  height: 9.5rem;
   overflow: hidden;
-  background: whitesmoke;
+  background: white;
+  padding: 0%;
 }
 .map .chart {
-  top: 0;
-  left: 0;
+  position: relative;
+  top: -1.5rem;
   width: 100%;
-  height: 10.125rem;
+  height: 100%;
 }
 .panel3 .el-table {
-  background: whitesmoke;
+  background: white;
 }
 /* 约束屏幕尺寸 */
 @media screen and (max-width: 1024px) {
