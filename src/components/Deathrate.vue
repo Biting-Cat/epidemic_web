@@ -51,7 +51,7 @@ export default {
           trigger: 'axis'
         },
         legend: {
-          data: ['邮件营销']
+          data: ['病死率']
         },
         grid: {
           left: '3%',
@@ -75,7 +75,7 @@ export default {
         series: [
           {
             smooth: true,
-            name: '邮件营销',
+            name: '病死率',
             type: 'line',
             data: [120, 132, 101, 134, 90, 230, 210]
           }

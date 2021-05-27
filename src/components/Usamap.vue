@@ -30,14 +30,14 @@ export default {
       const ret = await axios.get('http://localhost:8999/static/map/USA.json')
       this.$echarts.registerMap('USA', ret.data, {
         Alaska: { // 把阿拉斯加移到美国主大陆左下方
-          left: -121,
+          left: -131,
           top: 25,
           width: 15
         },
         Hawaii: {
-          left: -120, // 夏威夷
+          left: -110, // 夏威夷
           top: 28,
-          width: 10
+          width: 5
         },
         'Puerto Rico': { // 波多黎各
           left: -76,
@@ -46,6 +46,12 @@ export default {
         }
       })
       const initoption = {
+        title: {
+          text: 'USA Population Estimates (2012)',
+          subtext: 'Data from www.census.gov',
+          sublink: 'http://www.census.gov/popest/data/datasets.html',
+          left: 'right'
+        },
         tooltip: {
           trigger: 'item',
           showDelay: 0,
@@ -72,9 +78,7 @@ export default {
           left: 'left',
           top: 'top',
           feature: {
-            dataView: { readOnly: false },
-            restore: {},
-            saveAsImage: {}
+            restore: {}
           }
         },
         series: [
