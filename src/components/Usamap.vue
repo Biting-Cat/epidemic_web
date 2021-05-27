@@ -30,7 +30,7 @@ export default {
       const ret = await axios.get('http://localhost:8999/static/map/USA.json')
       this.$echarts.registerMap('USA', ret.data, {
         Alaska: { // 把阿拉斯加移到美国主大陆左下方
-          left: -131,
+          left: -121,
           top: 25,
           width: 15
         },
