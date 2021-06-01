@@ -155,11 +155,8 @@ export default {
       }
 
       this.chartInstance.setOption(initoption)
-      this.chartInstance.on('mouseover', () => {
-        clearInterval(this.timerId)
-      })
-      this.chartInstance.on('mouseout', () => {
-        this.startInterval()
+      this.chartInstance.on('click', (arg) => {
+        console.log(arg)
       })
     },
     getData() {
