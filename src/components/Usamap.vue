@@ -6,6 +6,7 @@
 
 <script>
 import axios from 'axios'
+import { getStateInfo } from '@/utils/map_utils'
 export default {
   data() {
     return {
@@ -156,7 +157,8 @@ export default {
 
       this.chartInstance.setOption(initoption)
       this.chartInstance.on('click', (arg) => {
-        console.log(arg)
+        const stateInfo = getStateInfo(arg.name)
+        console.log(stateInfo)
       })
     },
     getData() {
