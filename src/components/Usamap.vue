@@ -1,5 +1,5 @@
 <template>
-  <div class="death-container" @dbclick="revertMap">
+  <div class="death-container" @dblclick="revertMap">
     <div class="death-chart" ref="Deathrate_ref"></div>
   </div>
 </template>
@@ -22,9 +22,6 @@ export default {
     this.initChart()
     this.getData()
     window.addEventListener('resize', this.screenAdapter)
-  },
-  destroyed() {
-    clearInterval(this.timerId)
   },
   methods: {
     // 创建图表
@@ -166,20 +163,16 @@ export default {
         console.log(statepath)
         this.$echarts.registerMap(stateInfo.key, statepath.data)
         const changeOption = {
-          geo: {
-            map: stateInfo.key,
-            label: {
-              show: true,
-              color: '#fff'
-            },
-            itemStyle: {
-              normal: {
-                areaColor: '#313695' // 地图颜色
-              }
-            }
-          }
+          title: {
+            text: '双击空白部分回到主地图',
+            left: 'right'
+          },
+          series: [{
+            type: 'map',
+            map: stateInfo.key
+          }]
         }
-        this.chartInstance.setOption(changeOption, true)
+        this.chartInstance.setOption(changeOption)
       })
     },
     getData() {
@@ -215,7 +208,20 @@ export default {
       this.chartInstance.resize()
     },
     revertMap() {
-      this.chartInstance.setOption(this.usaOption)
+      // 由于option的各个部分可以互相覆盖的,只需要把改变的地方赋值回去就好了。
+      const changeoption = {
+        title: {
+          text: 'USA Population Estimates (2012)',
+          left: 'right'
+        },
+        series: [{
+          name: 'USA PopEstimates',
+          type: 'map',
+          roam: true,
+          map: 'USA'
+        }]
+      }
+      this.chartInstance.setOption(changeoption)
     }
   }
 }
