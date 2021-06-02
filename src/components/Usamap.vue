@@ -1,18 +1,20 @@
 <template>
-  <div class="death-container">
+  <div class="death-container" @dbclick="revertMap">
     <div class="death-chart" ref="Deathrate_ref"></div>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+// 按需导入州名对应文件的函数
 import { getStateInfo } from '@/utils/map_utils'
 export default {
   data() {
     return {
       chartInstance: null,
       allData: null,
-      timerId: null // 定时器
+      usaOption: null,
+      mapdata: {}
     }
   },
   // mounted才能获取$ref
@@ -154,11 +156,30 @@ export default {
           }
         ]
       }
+      this.usaOption = initoption
 
       this.chartInstance.setOption(initoption)
-      this.chartInstance.on('click', (arg) => {
+      // 点击美国地图显示对应州的地址
+      this.chartInstance.on('click', async(arg) => {
         const stateInfo = getStateInfo(arg.name)
-        console.log(stateInfo)
+        const statepath = await axios.get('http://localhost:8999/' + stateInfo.path)
+        console.log(statepath)
+        this.$echarts.registerMap(stateInfo.key, statepath.data)
+        const changeOption = {
+          geo: {
+            map: stateInfo.key,
+            label: {
+              show: true,
+              color: '#fff'
+            },
+            itemStyle: {
+              normal: {
+                areaColor: '#313695' // 地图颜色
+              }
+            }
+          }
+        }
+        this.chartInstance.setOption(changeOption, true)
       })
     },
     getData() {
@@ -193,13 +214,8 @@ export default {
       this.chartInstance.setOption(adapteroption)
       this.chartInstance.resize()
     },
-    startInterval() {
-      if (this.timerId) {
-        clearInterval(this.timerId)
-      }
-      this.timerId = setInterval(() => {
-        this.updateChart()
-      }, 3000)
+    revertMap() {
+      this.chartInstance.setOption(this.usaOption)
     }
   }
 }
