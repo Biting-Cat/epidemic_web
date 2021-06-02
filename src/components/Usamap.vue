@@ -169,7 +169,10 @@ export default {
           },
           series: [{
             type: 'map',
-            map: stateInfo.key
+            map: stateInfo.key,
+            label: {
+              show: true
+            }
           }]
         }
         this.chartInstance.setOption(changeOption)
