@@ -221,7 +221,10 @@ export default {
           name: 'USA PopEstimates',
           type: 'map',
           roam: true,
-          map: 'USA'
+          map: 'USA',
+          label: {
+            show: false
+          }
         }]
       }
       this.chartInstance.setOption(changeoption)
