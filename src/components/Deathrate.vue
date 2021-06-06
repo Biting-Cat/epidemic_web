@@ -9,8 +9,8 @@ export default {
   data() {
     return {
       chartInstance: null,
-      allData: null,
-      timerId: null // 定时器
+      timerId: null, // 定时器
+      allData: null
     }
   },
   // mounted才能获取$ref
@@ -33,15 +33,18 @@ export default {
         this.startInterval()
       })
     },
-    getData() {
+    async getData() {
       // 接口地址,在main.js里面可以调基准地址
-      // const { data: ret } = await this.$http.get('line')
-      // console.log(ret)
-      // this.allData = ret
+      const { data: ret } = await this.$http.get('line')
+      console.log(ret)
+      this.allData = ret
       this.updateChart()
       this.startInterval()
     },
     updateChart() {
+      const cfrList = this.allData.cfrlist.map((item) => {
+        return item * 100.00
+      })
       // option的静态部分
       const initoption = {
         title: {
@@ -66,18 +69,22 @@ export default {
         xAxis: {
           type: 'category',
           boundaryGap: false,
-          // data: this.allData.deaths
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+          data: this.allData.dateList
         },
         yAxis: {
-          type: 'value'
+          type: 'value',
+          axisLabel: {
+            show: true,
+            interval: 'auto',
+            formatter: '{value}%'
+          }
         },
         series: [
           {
             smooth: true,
             name: '病死率',
             type: 'line',
-            data: [120, 132, 101, 134, 90, 230, 210]
+            data: cfrList
           }
         ]
       }
