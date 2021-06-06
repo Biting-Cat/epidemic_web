@@ -43,7 +43,7 @@ export default {
     },
     updateChart() {
       const cfrList = this.allData.cfrlist.map((item) => {
-        return item * 100.00
+        return (item * 100).toFixed(2)
       })
       // option的静态部分
       const initoption = {
@@ -51,7 +51,8 @@ export default {
           text: '病死率'
         },
         tooltip: {
-          trigger: 'axis'
+          trigger: 'axis',
+          formatter: '{a}: {c}%<br>日期：{b} '
         },
         legend: {
           data: ['病死率']
