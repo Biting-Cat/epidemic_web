@@ -5,10 +5,8 @@
         placeholder="请输入内容"
         v-model="input3"
         class="input-with-select">
-        <el-select v-model="select" slot="append" placeholder="请选择">
-          <el-option label="餐厅名" value="1"></el-option>
-          <el-option label="订单号" value="2"></el-option>
-          <el-option label="用户电话" value="3"></el-option>
+        <el-select v-model="stateName" :key="id" :value="item" slot="append" placeholder="请选择">
+          <el-option v-for="item in stateName" :key="item.id" :label="item.name" :value="item"></el-option>
         </el-select>
       </el-input>
     </div>
@@ -21,12 +19,10 @@ export default {
   data() {
     return {
       chartInstance: null,
-      // allData: null,
+      chartData: null,
+      stateName: null,
       timevalue: null,
-      timerId: null, // 定时器
-
-      input3: '',
-      select: ''
+      timerId: null// 定时器
     }
   },
   mounted() {
@@ -48,11 +44,14 @@ export default {
         this.startInterval()
       })
     },
-    getData() {
+    async getData() {
       // 接口地址,在main.js里面可以调基准地址
-      // const { data: ret } = await this.$http.get('/searchstateline'+'name')
-      // console.log(ret)
-      // this.allData = ret
+      const { data: ret } = await this.$http.get('/searchstateline?state=New York')
+      console.log(ret)
+      this.chartData = ret
+      const { data: res } = await this.$http.get('/allstate')
+      console.log(res)
+      this.stateName = res
       this.updateChart()
       this.startInterval()
     },

@@ -36,7 +36,8 @@ export default {
     async getData() {
       // 接口地址,在main.js里面可以调基准地址
       const { data: ret } = await this.$http.get('line')
-      console.log(ret)
+      // 返回数据
+      // console.log(ret)
       this.allData = ret
       this.updateChart()
       this.startInterval()
@@ -93,7 +94,8 @@ export default {
     },
     screenAdapter() {
       const titleFontSize = this.$refs.Deathrate_ref.offsetWidth / 100 * 3.6
-      console.log(titleFontSize)
+      // 图表宽度大小
+      // console.log(titleFontSize)
       const adapteroption = {
         title: {
           textstyle: {
