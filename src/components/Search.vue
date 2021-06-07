@@ -1,14 +1,13 @@
 <template>
   <div class="death-container">
     <div class=searchinput>
-      <el-input
-        placeholder="请输入内容"
-        v-model="input3"
-        class="input-with-select">
-        <el-select v-model="stateName" :key="id" :value="item" slot="append" placeholder="请选择">
-          <el-option v-for="item in stateName" :key="item.id" :label="item.name" :value="item"></el-option>
-        </el-select>
-      </el-input>
+    <el-autocomplete
+      class="inline-input"
+      v-model="state"
+      :fetch-suggestions="querySearch"
+      placeholder="请输入内容"
+      @select="handleSelect"
+    ></el-autocomplete>
     </div>
     <div class="search-chart" ref="search_ref"></div>
   </div>
@@ -22,6 +21,8 @@ export default {
       chartData: null,
       stateName: null,
       timevalue: null,
+      restaurants: [],
+      state: '',
       timerId: null// 定时器
     }
   },
@@ -50,10 +51,24 @@ export default {
       console.log(ret)
       this.chartData = ret
       const { data: res } = await this.$http.get('/allstate')
-      console.log(res)
-      this.stateName = res
+      this.restaurants = res.map(item => ({ value: item }))
+      console.log(this.restaurants)
       this.updateChart()
       this.startInterval()
+    },
+    querySearch(queryString, cb) {
+      var restaurants = this.restaurants
+      var results = queryString ? restaurants.filter(this.createFilter(queryString)) : restaurants
+      // 调用 callback 返回建议列表的数据
+      cb(results)
+    },
+    createFilter(queryString) {
+      return (restaurant) => {
+        return (restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0)
+      }
+    },
+    handleSelect(item) {
+      console.log(item)
     },
     updateChart() {
       // option的静态部分
