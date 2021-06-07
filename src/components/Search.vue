@@ -18,6 +18,7 @@ export default {
   data() {
     return {
       chartInstance: null,
+      // 图表的基本数据
       chartData: null,
       stateName: null,
       timevalue: null,
@@ -69,6 +70,7 @@ export default {
     },
     handleSelect(item) {
       console.log(item)
+      this.stateName = item
     },
     updateChart() {
       // option的静态部分
@@ -161,13 +163,13 @@ export default {
   width: 100%;
 margin-top: .0125rem;
   }
-  .search-chart{
+  .search-chart {
     height: 90%;
     width: 100%;
     border: 0;
     overflow: hidden;
   }
- .input-with-select .el-input__inner{
-    height: .630rem;
+ .inline-input  {
+    width: 100%;
   }
 </style>
