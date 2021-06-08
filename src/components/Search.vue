@@ -20,7 +20,7 @@ export default {
       chartInstance: null,
       // 图表的基本数据
       chartData: null,
-      stateName: null,
+      stateName: 'New York',
       timevalue: null,
       restaurants: [],
       state: '',
@@ -48,13 +48,10 @@ export default {
     },
     async getData() {
       // 接口地址,在main.js里面可以调基准地址
-      const { data: ret } = await this.$http.get('/searchstateline?state=New York')
-      console.log(ret)
-      this.chartData = ret
-      const { data: res } = await this.$http.get('/allstate')
+      const { data: res } = await this.$http.get('allstate')
       this.restaurants = res.map(item => ({ value: item }))
-      console.log(this.restaurants)
-      this.updateChart()
+      // console.log(this.restaurants)
+      this.defaultchart()
       this.startInterval()
     },
     querySearch(queryString, cb) {
@@ -68,21 +65,32 @@ export default {
         return (restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0)
       }
     },
-    handleSelect(item) {
-      console.log(item)
-      this.stateName = item
+    async handleSelect(item) {
+      // console.log(item)
+      this.stateName = item.value
+      const statePath = 'searchstateline?state=' + this.stateName
+      // console.log(statePath)
+      const { data: ret } = await this.$http.get(statePath)
+      this.chartData = ret
+      // console.log(this.chartData)
+      this.updateChart()
     },
-    updateChart() {
-      // option的静态部分
-      const initoption = {
+    async defaultchart() {
+      const statePath = 'searchstateline?state=New YorK'
+      const { data: ret } = await this.$http.get(statePath)
+      const defaultcfrList = ret.cfrlist.map((item) => {
+        return (item * 100).toFixed(2)
+      })
+      const defaultOption = {
         title: {
-          text: '病死率'
+          text: '州病死率'
         },
         tooltip: {
-          trigger: 'axis'
+          trigger: 'axis',
+          formatter: '{a}: {c}%<br>日期：{b} '
         },
         legend: {
-          data: ['邮件营销', '联盟广告']
+          data: ['州病死率']
         },
         grid: {
           left: '3%',
@@ -97,35 +105,55 @@ export default {
         xAxis: {
           type: 'category',
           boundaryGap: false,
-          // data: this.allData.deaths
-          data: ['邮件营销', '联盟广告', '视频广告']
+          data: ret.dateList
         },
         yAxis: {
-          type: 'value'
+          type: 'value',
+          axisLabel: {
+            show: true,
+            interval: 'auto',
+            formatter: '{value}%'
+          }
         },
         series: [
           {
-            name: '邮件营销',
+            smooth: true,
+            name: '病死率',
             type: 'line',
-            data: [120, 132, 101, 134, 90, 230, 210]
-          },
-          {
-            name: '联盟广告',
-            type: 'line',
-            data: [220, 182, 191, 234, 290, 330, 310]
-          },
-          {
-            name: '视频广告',
-            type: 'line',
-            data: [150, 232, 201, 154, 190, 330, 410]
+            data: defaultcfrList
           }
         ]
       }
-      this.chartInstance.setOption(initoption)
+      this.chartInstance.setOption(defaultOption)
+    },
+    updateChart() {
+      if (this.chartData.cfrlist !== '') {
+        const cfrList = this.chartData.cfrlist.map((item) => {
+          return (item * 100).toFixed(2)
+        })
+        // option的静态部分
+        const changeoption = {
+          xAxis: {
+            type: 'category',
+            data: this.chartData.dateList
+          },
+          series: [
+            {
+              smooth: true,
+              name: '病死率',
+              type: 'line',
+              data: cfrList
+            }
+          ]
+        }
+        this.chartInstance.setOption(changeoption)
+      } else {
+        console.log('please choose a state')
+      }
     },
     screenAdapter() {
       const titleFontSize = this.$refs.search_ref.offsetWidth / 100 * 3.6
-      console.log(titleFontSize)
+      // console.log(titleFontSize)
       const adapteroption = {
         title: {
           textstyle: {
