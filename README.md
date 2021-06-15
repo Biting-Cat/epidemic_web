@@ -1,5 +1,5 @@
 # epidemic_web
-
+项目迁移至gitee
 components 文件夹下存放的是图表本体
 
 views文件夹下存放的是图表的分视图 
